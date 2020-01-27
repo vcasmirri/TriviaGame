@@ -69,13 +69,13 @@ function displayQuestion () {
         clearInterval(intervalId);
         clockRunning = false;
     }
+    var intervalId;
+    var clockRunning = false;
 
     // Defines the splash screens that appear between questions
     function splashScreen () {
         $("#currentQuestion").empty();
-        var intervalId;
-        var clockRunning = false;
-        var time = 5;
+        time = 5;
         function count() {
             
             // DONE: increment time by 1, remember we cant use "this" here.
@@ -86,10 +86,15 @@ function displayQuestion () {
             var converted = timeConverter(time);
             console.log(converted);
             
+
+            // Moves game to next question
             if (converted == "00:00") {
                 questionIndex += 1;
                 currentQuestion = questionArray[questionIndex];
                 console.log("The index of the next question is: " + questionArray.indexOf(currentQuestion));
+                stop();
+                mainConverted = "01:00";
+                console.log("Can anyone hear me?");
                 displayQuestion();
             }
            
@@ -103,15 +108,13 @@ function displayQuestion () {
             resultDisplay.text("Correct!");
             $("#currentQuestion").append(resultDisplay);
             console.log("You answered " + currentQuestion + " correctly!");
+            console.log("I'm a naughty block of code, aren't I?")
         }
-        // Moves game to next question
         
     }
     
     // Define/display question timer
     
-    var intervalId;
-    var clockRunning = false;
     var timerDisplay = $("<div>");
     var time = 10;
     timerDisplay.addClass("timer");
@@ -123,17 +126,18 @@ function displayQuestion () {
     
     // DONE: Get the current time, pass that into the timeConverter function,
     //       and save the result in a variable.
-    var converted = timeConverter(time);
-    console.log(converted);
+    mainConverted = timeConverter(time);
+    console.log(mainConverted);
     
-    if (converted == "00:00") {
+    if (mainConverted == "00:00") {
         unanswered++;
         console.log("The number of unanswered questions is: " + unanswered);
+        console.log("Or maybe I'm the culprit?")
         splashScreen();
     }
 
     // DONE: Use the variable we just created to show the converted time in the "display" div.
-    timerDisplay.text(converted);
+    timerDisplay.text(mainConverted);
     }
       function timeConverter(t) {
       
@@ -199,7 +203,6 @@ function displayQuestion () {
         incorrectAnswers++;
         currentQuestion.incorrect = true;
         console.log("The number of incorrect answers so far is: " + incorrectAnswers);
-        splashScreen();
     }
     
     stop();
