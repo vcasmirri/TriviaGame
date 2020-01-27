@@ -93,7 +93,6 @@ function displayQuestion () {
                 currentQuestion = questionArray[questionIndex];
                 console.log("The index of the next question is: " + questionArray.indexOf(currentQuestion));
                 stop();
-                mainConverted = "01:00";
                 console.log("Can anyone hear me?");
                 displayQuestion();
             }
