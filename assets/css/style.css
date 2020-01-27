@@ -13,3 +13,15 @@ button:hover {
     background-color: aquamarine;
     font-size: 30px;
 }
+
+.timer {
+    background-color: red;
+}
+
+.question {
+    background-color: black;
+}
+
+.choiceButton {
+    background-color: yellow;
+}
