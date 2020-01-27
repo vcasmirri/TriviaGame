@@ -1,0 +1,15 @@
+button {
+    cursor: -webkit-grab;
+    cursor: grab;
+    transition: filter 1s;
+}
+
+button:hover {
+    filter: drop-shadow(0 0 30px #333);
+}
+
+
+#startButton {
+    background-color: aquamarine;
+    font-size: 30px;
+}
