@@ -55,13 +55,108 @@ var currentQuestion = questionArray[questionIndex];
 $("button").remove("#startButton");
 
 function displayQuestion () {
-
+    
     $("#currentQuestion").empty();
+   
+    // Defines basic start/stop functions for timers
+    function start () {
+        if (!clockRunning) {
+            intervalId = setInterval(count, 1000);
+            clockRunning = true;
+        }
+    }
+    function stop() {
+        clearInterval(intervalId);
+        clockRunning = false;
+    }
+
+    // Defines the splash screens that appear between questions
+    function splashScreen () {
+        $("#currentQuestion").empty();
+        var intervalId;
+        var clockRunning = false;
+        var time = 5;
+        function count() {
+            
+            // DONE: increment time by 1, remember we cant use "this" here.
+            time--;
+            
+            // DONE: Get the current time, pass that into the timeConverter function,
+            //       and save the result in a variable.
+            var converted = timeConverter(time);
+            console.log(converted);
+            
+            if (converted == "00:00") {
+                questionIndex += 1;
+                currentQuestion = questionArray[questionIndex];
+                console.log("The index of the next question is: " + questionArray.indexOf(currentQuestion));
+                displayQuestion();
+            }
+           
+            
+        }
+   
+        start();
+        if (currentQuestion.correct === true) {
+            var resultDisplay = $("<div>");
+            resultDisplay.addClass("result");
+            resultDisplay.text("Correct!");
+            $("#currentQuestion").append(resultDisplay);
+            console.log("You answered " + currentQuestion + " correctly!");
+        }
+        // Moves game to next question
+        
+    }
+    
     // Define/display question timer
+    
+    var intervalId;
+    var clockRunning = false;
     var timerDisplay = $("<div>");
+    var time = 10;
     timerDisplay.addClass("timer");
-    timerDisplay.text("Timer will go here.");
+    timerDisplay.text("Go!");
+    function count() {
+
+    // DONE: increment time by 1, remember we cant use "this" here.
+    time--;
+    
+    // DONE: Get the current time, pass that into the timeConverter function,
+    //       and save the result in a variable.
+    var converted = timeConverter(time);
+    console.log(converted);
+    
+    if (converted == "00:00") {
+        unanswered++;
+        console.log("The number of unanswered questions is: " + unanswered);
+        splashScreen();
+    }
+
+    // DONE: Use the variable we just created to show the converted time in the "display" div.
+    timerDisplay.text(converted);
+    }
+      function timeConverter(t) {
+      
+        var minutes = Math.floor(t / 60);
+        var seconds = t - (minutes * 60);
+      
+        if (seconds < 10) {
+          seconds = "0" + seconds;
+        }
+      
+        if (minutes === 0) {
+          minutes = "00";
+        }
+        else if (minutes < 10) {
+          minutes = "0" + minutes;
+        }
+      
+        return minutes + ":" + seconds;
+    }
+    
     $("#currentQuestion").append(timerDisplay);
+    start();
+    
 
     // Define/display current question
     var questionDisplay = $("<div>");
@@ -104,13 +199,11 @@ function displayQuestion () {
         incorrectAnswers++;
         currentQuestion.incorrect = true;
         console.log("The number of incorrect answers so far is: " + incorrectAnswers);
+        splashScreen();
     }
-
-    // Moves game to next question
-    questionIndex += 1;
-    currentQuestion = questionArray[questionIndex];
-    console.log("The index of the next question is: " + questionArray.indexOf(currentQuestion));
-    displayQuestion();
+    
+    stop();
+    splashScreen();
 
     });
 
