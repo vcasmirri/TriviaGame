@@ -96,20 +96,22 @@ function displayQuestion () {
         console.log("The number of correct answers so far is: " + correctAnswers);
         console.log("The index of the current question is: " + questionArray.indexOf(currentQuestion));
         
-        // Moves game to next question, this should probably move to after the if/else statement
-        questionIndex += 1;
-        currentQuestion = questionArray[questionIndex];
-        console.log("The index of the next question is: " + questionArray.indexOf(currentQuestion));
-        displayQuestion();
     }
-        else if (choiceMade != currentQuestion.correctChoice) {
+    else if (choiceMade != currentQuestion.correctChoice) {
         console.log("You made the wrong choice.");
-
+        
         // Increment number of incorrect answers given
         incorrectAnswers++;
         currentQuestion.incorrect = true;
         console.log("The number of incorrect answers so far is: " + incorrectAnswers);
-        }
+    }
+
+    // Moves game to next question
+    questionIndex += 1;
+    currentQuestion = questionArray[questionIndex];
+    console.log("The index of the next question is: " + questionArray.indexOf(currentQuestion));
+    displayQuestion();
+
     });
 
 }
