@@ -26,3 +26,7 @@ button:hover {
 .choiceButton {
     background-color: yellow;
 }
+
+.finalResult {
+    background-color: aquamarine;
+}

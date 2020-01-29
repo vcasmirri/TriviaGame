@@ -77,39 +77,74 @@ function displayQuestion () {
     // Defines the splash screens that appear between questions
     function splashScreen () {
         $("#currentQuestion").empty();
-        time = 5;
-        function count() {
+        timeSplash = 5;
+        function startSplash () {
+            if (!clockRunningSplash) {
+                intervalIdSplash = setInterval(countSplash, 1000);
+                clockRunningSplash = true;
+            }
+        }
+        function stopSplash() {
+            clearInterval(intervalIdSplash);
+            clockRunningSplash = false;
+        }
+        var intervalIdSplash;
+        var clockRunningSplash = false;
+        function countSplash() {
             
             // DONE: increment time by 1, remember we cant use "this" here.
-            time--;
+            timeSplash--;
             
             // DONE: Get the current time, pass that into the timeConverter function,
             //       and save the result in a variable.
-            var converted = timeConverter(time);
-            console.log(converted);
+            var convertedSplash = timeConverter(timeSplash);
+            console.log(convertedSplash);
             
 
+            // Displays final results screen
+            if ((convertedSplash == "00:00") && (currentQuestion == questionArray[4])) {
+                stopSplash();
+                $("#currentQuestion").empty();
+                var finalResultDisplay = $("<div>");
+                finalResultDisplay.addClass("finalResult");
+                finalResultDisplay.text("You answered " + correctAnswers + " correctly, " + incorrectAnswers + " incorrectly, " + "and left " + unanswered + " unanswered.");
+                $("#currentQuestion").append(finalResultDisplay);
+
+                var restartButton = $("<button>");
+                restartButton.addClass("btn btn-primary restartButton");
+                restartButton.text("Restart game.");
+                $("#currentQuestion").append(restartButton);
+                $(".restartButton").on("click", function() {
+                    gameSet();
+                })
+            }
             // Moves game to next question
-            if (converted == "00:00") {
+             else if (convertedSplash == "00:00") {
                 questionIndex += 1;
                 currentQuestion = questionArray[questionIndex];
                 console.log("The index of the next question is: " + questionArray.indexOf(currentQuestion));
-                stop();
+                stopSplash();
                 console.log("Can anyone hear me?");
                 displayQuestion();
-            }
+            } 
+            
            
             
         }
    
-        start();
+        startSplash();
         if (currentQuestion.correct === true) {
             var resultDisplay = $("<div>");
             resultDisplay.addClass("result");
             resultDisplay.text("Correct!");
             $("#currentQuestion").append(resultDisplay);
             console.log("You answered " + currentQuestion + " correctly!");
-            console.log("I'm a naughty block of code, aren't I?")
+            console.log("splash screen code is repeating");
+        } else {
+            var resultDisplay = $("<div>");
+            resultDisplay.addClass("result");
+            resultDisplay.text("Incorrect. The correct answer is " + currentQuestion.correctChoice + ".");
+            $("#currentQuestion").append(resultDisplay);
         }
         
     }
@@ -133,7 +168,8 @@ function displayQuestion () {
     if (mainConverted == "00:00") {
         unanswered++;
         console.log("The number of unanswered questions is: " + unanswered);
-        console.log("Or maybe I'm the culprit?")
+        console.log("Main timeout code is repeating")
+        stop();
         splashScreen();
     }
 
