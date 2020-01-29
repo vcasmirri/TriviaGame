@@ -31,7 +31,7 @@ var questionThree = {
 }
 var questionFour = {
     question : "Which of the following legendary composers is most associated with the Romantic era?",
-    choices : ["Chopin", "Bach", "Mozart", "Rachmaninoff"],
+    choices : ["Chopin", "Bach", "Mozart", "Shostakovich"],
     outtaTime : false,
     correct : false,
     incorrect : false,
@@ -110,7 +110,7 @@ function displayQuestion () {
 
                 var restartButton = $("<button>");
                 restartButton.addClass("btn btn-primary restartButton");
-                restartButton.text("Restart game.");
+                restartButton.text("Restart");
                 $("#currentQuestion").append(restartButton);
                 $(".restartButton").on("click", function() {
                     gameSet();
