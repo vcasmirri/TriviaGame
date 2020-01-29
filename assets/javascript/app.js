@@ -1,7 +1,5 @@
 function gameSet () {
 
-// Need to revert to easier homework version due to time crunch.
-
 // Resets initial variables, defines questions and answers, resets user choices
 
 var correctAnswers = 0;
