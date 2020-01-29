@@ -1,5 +1,5 @@
 body {
-    background-image: url("../images/blue-snow.png");
+    background-image: url("../images/lined_paper.png");
     background-repeat: repeat;
 }
 
@@ -15,14 +15,17 @@ button:hover {
 
 
 #startButton {
-    background-color: #4aaaa5;
+    background-color: #224E4B;
     font-size: 30px;
     color: white;
 }
 
 .jumbotron {
     background-color: #4aaaa5;
+    border-bottom: 3px grey;
     color: white;
+    box-shadow: 0 0 30px grey;
+    text-shadow: 2px 2px 4px #000000;
 }
 
 .timer {
@@ -35,7 +38,7 @@ button:hover {
 }
 
 .question {
-    background-color: rgb(25, 0, 255);
+    background-color: #4aaaa5;
     color: white;
     font-size: 25px;
     border-radius: 25px;
@@ -45,15 +48,16 @@ button:hover {
 }
 
 .choiceButton {
-    background-color: #4aaaa5;
+    background-color: #224E4B;
     font-size: 20px;
     border-radius: 25px;
     margin: auto auto 20px auto;
     color: white;
+    text-shadow: 2px 2px 4px #000000;
 }
 
 .finalResult {
-    background-color: rgb(25, 0, 255);
+    background-color: #4aaaa5;
     color: white;
     font-size: 25px;
     border-radius: 25px;
@@ -62,7 +66,7 @@ button:hover {
 }
 
 .result {
-    background-color: rgb(25, 0, 255);
+    background-color: #4aaaa5;
     display: inline-flex;
     color: white;
     font-size: 25px;
@@ -82,7 +86,7 @@ button:hover {
 }
 
 .restartButton {
-    background-color: #4aaaa5;
+    background-color: #224E4B;
     font-size: 30px;
     color: white;
     margin-top: 20px;
