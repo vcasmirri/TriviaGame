@@ -137,10 +137,9 @@ function displayQuestion () {
             resultDisplay.text("Correct!");
             $("#currentQuestion").append(resultDisplay);
             console.log("You answered " + currentQuestion + " correctly!");
-            console.log("splash screen code is repeating");
         } else {
             var resultDisplay = $("<div>");
-            resultDisplay.addClass("result");
+            resultDisplay.addClass("incorrectResult");
             resultDisplay.text("Incorrect. The correct answer is " + currentQuestion.correctChoice + ".");
             $("#currentQuestion").append(resultDisplay);
         }
@@ -150,7 +149,7 @@ function displayQuestion () {
     // Define/display question timer
     
     var timerDisplay = $("<div>");
-    var time = 10;
+    var time = 60;
     timerDisplay.addClass("timer");
     timerDisplay.text("Go!");
     function count() {
