@@ -53,7 +53,12 @@ button:hover {
 }
 
 .finalResult {
-    background-color: #4aaaa5;
+    background-color: rgb(25, 0, 255);
+    color: white;
+    font-size: 25px;
+    border-radius: 25px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
 .result {
@@ -74,4 +79,11 @@ button:hover {
     border-radius: 25px;
     margin: 0 auto;
     padding: 20px;
+}
+
+.restartButton {
+    background-color: #4aaaa5;
+    font-size: 30px;
+    color: white;
+    margin-top: 20px;
 }
